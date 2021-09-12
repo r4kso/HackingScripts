@@ -1,6 +1,10 @@
-# Import subprocess so we can use system commands
+###########################################
+# Made by R4kso                           #
+# https://github.com/r4kso                #
+# https://www.instagram.com/notaboutfran/ #
+###########################################
+
 import subprocess
-# Import re so we can use regular expressions
 import re
 
 output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output = True).stdout.decode()
@@ -11,13 +15,13 @@ list = []
 if len(names) != 0:
     for name in names:
         wifi_profile = {}
-        profile_info = subprocess.run(["netsh", "wlan", "show", "profile", name], capture_output = True).stdout.decode()
-        if re.search("Security key           : Absent", profile_info):
+        pinfo = subprocess.run(["netsh", "wlan", "show", "profile", name], capture_output = True).stdout.decode()
+        if re.search("Security key           : Absent", pinfo):
             continue
         else:
             wifi_profile["ssid"] = name
-            profile_info_pswd = subprocess.run(["netsh", "wlan", "show", "profile", name, "key=clear"], capture_output = True).stdout.decode()
-            pswd = re.search("Key Content            : (.*)\r", profile_info_pswd)
+            pinfo_pswd = subprocess.run(["netsh", "wlan", "show", "profile", name, "key=clear"], capture_output = True).stdout.decode()
+            pswd = re.search("Key Content            : (.*)\r", pinfo_pswd)
             if pswd == None:
                 wifi_profile["password"] = None
             else:
