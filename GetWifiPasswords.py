@@ -1,7 +1,6 @@
 ###########################################
 # Made by R4kso                           #
 # https://github.com/r4kso                #
-# https://www.instagram.com/notaboutfran/ #
 ###########################################
 
 import subprocess
